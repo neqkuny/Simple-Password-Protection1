@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HeroSection } from "@/components/HeroSection";
 import { PasswordInput } from "@/components/PasswordInput";
 import { PasswordStrengthMeter } from "@/components/PasswordStrengthMeter";
-import { EducationalTabs } from "@/components/EducationalTabs";
+import { EducationalTabs, SecurityTipsSection } from "@/components/EducationalTabs";
 import { Shield, Github, Heart } from "lucide-react";
+import confetti from "canvas-confetti";
 
 const Index = () => {
   const [password, setPassword] = useState("");
+  const hasConfettiFired = useRef(false);
+
+  // Check if password is excellent and fire confetti
+  useEffect(() => {
+    const isExcellent = password.length >= 12 &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(password) &&
+      !/(123|abc|password|qwerty)/i.test(password);
+
+    if (isExcellent && !hasConfettiFired.current) {
+      hasConfettiFired.current = true;
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#22d3ee', '#10b981', '#14b8a6']
+      });
+    } else if (!isExcellent) {
+      hasConfettiFired.current = false;
+    }
+  }, [password]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -15,7 +39,7 @@ const Index = () => {
         <div className="container py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-accent" />
-            <span className="font-semibold text-foreground">PassGuard</span>
+            <span className="font-semibold text-foreground">Simple Password Protection</span>
           </div>
           <a 
             href="https://github.com" 
@@ -54,6 +78,7 @@ const Index = () => {
             </p>
           </div>
           <EducationalTabs />
+          <SecurityTipsSection />
         </section>
       </main>
 
@@ -63,7 +88,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-accent" />
-              <span>PassGuard</span>
+              <span>Simple Password Protection</span>
             </div>
             <p className="flex items-center gap-1">
               Made with <Heart className="w-4 h-4 text-destructive" /> for a safer internet

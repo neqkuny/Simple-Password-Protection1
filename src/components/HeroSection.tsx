@@ -1,4 +1,4 @@
-import { Shield, Lock, Key } from "lucide-react";
+import { Shield } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -26,25 +26,6 @@ export function HeroSection() {
             Test your password strength, learn about common attack methods, and discover 
             how to create unbreakable passwords that protect your digital life.
           </p>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto animate-fade-in" style={{ animationDelay: "300ms" }}>
-            <div className="p-4 rounded-lg bg-card/50 border border-border">
-              <Lock className="w-5 h-5 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">24B+</div>
-              <div className="text-xs text-muted-foreground">Passwords Leaked</div>
-            </div>
-            <div className="p-4 rounded-lg bg-card/50 border border-border">
-              <Key className="w-5 h-5 text-warning mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">80%</div>
-              <div className="text-xs text-muted-foreground">Reuse Passwords</div>
-            </div>
-            <div className="p-4 rounded-lg bg-card/50 border border-border">
-              <Shield className="w-5 h-5 text-accent mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">2min</div>
-              <div className="text-xs text-muted-foreground">Avg Crack Time</div>
-            </div>
-          </div>
         </div>
       </div>
     </header>
