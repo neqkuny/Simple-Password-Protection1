@@ -1,36 +1,88 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { HeroSection } from "@/components/HeroSection";
 import { PasswordInput } from "@/components/PasswordInput";
 import { PasswordStrengthMeter } from "@/components/PasswordStrengthMeter";
 import { EducationalTabs, SecurityTipsSection } from "@/components/EducationalTabs";
 import { Shield, Github, Heart } from "lucide-react";
-import confetti from "canvas-confetti";
+
+// Simple confetti implementation
+const createConfetti = () => {
+  const colors = ['#22d3ee', '#10b981', '#14b8a6', '#06b6d4', '#34d399'];
+  const confettiCount = 100;
+  
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.cssText = `
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      left: ${Math.random() * 100}vw;
+      top: -10px;
+      opacity: 1;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+      pointer-events: none;
+      z-index: 9999;
+      animation: confetti-fall ${2 + Math.random() * 2}s linear forwards;
+    `;
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => {
+      confetti.remove();
+    }, 4000);
+  }
+};
+
+// Add keyframes to document
+const addConfettiStyles = () => {
+  if (document.getElementById('confetti-styles')) return;
+  
+  const style = document.createElement('style');
+  style.id = 'confetti-styles';
+  style.textContent = `
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+};
 
 const Index = () => {
   const [password, setPassword] = useState("");
   const hasConfettiFired = useRef(false);
 
-  // Check if password is excellent and fire confetti
+  // Add confetti styles on mount
   useEffect(() => {
-    const isExcellent = password.length >= 12 &&
-      /[A-Z]/.test(password) &&
-      /[a-z]/.test(password) &&
-      /[0-9]/.test(password) &&
-      /[!@#$%^&*(),.?":{}|<>]/.test(password) &&
-      !/(123|abc|password|qwerty)/i.test(password);
+    addConfettiStyles();
+  }, []);
+
+  // Check if password is excellent and fire confetti
+  const checkAndFireConfetti = useCallback((pwd: string) => {
+    const isExcellent = pwd.length >= 12 &&
+      /[A-Z]/.test(pwd) &&
+      /[a-z]/.test(pwd) &&
+      /[0-9]/.test(pwd) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(pwd) &&
+      !/(123|abc|password|qwerty)/i.test(pwd);
 
     if (isExcellent && !hasConfettiFired.current) {
       hasConfettiFired.current = true;
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#22d3ee', '#10b981', '#14b8a6']
-      });
+      createConfetti();
     } else if (!isExcellent) {
       hasConfettiFired.current = false;
     }
-  }, [password]);
+  }, []);
+
+  useEffect(() => {
+    checkAndFireConfetti(password);
+  }, [password, checkAndFireConfetti]);
 
   return (
     <div className="min-h-screen bg-background">
