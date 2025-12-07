@@ -71,7 +71,7 @@ export function EducationalTabs() {
           value="tips"
           className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground rounded-md transition-all"
         >
-          Pro Tips
+          Tips
         </TabsTrigger>
       </TabsList>
 
@@ -164,9 +164,9 @@ export function EducationalTabs() {
       <TabsContent value="tips" className="mt-6 animate-fade-in">
         <div className="space-y-6">
           <div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">Security Best Practices</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Security Tips</h3>
             <p className="text-muted-foreground">
-              Follow these expert recommendations to maximize your account security.
+              Follow these recommendations to maximize your account security.
             </p>
           </div>
 
@@ -186,22 +186,6 @@ export function EducationalTabs() {
                 <p className="text-sm text-foreground">{item.tip}</p>
               </div>
             ))}
-          </div>
-
-          <div className="p-5 rounded-lg bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/20">
-            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-accent" />
-              The Passphrase Advantage
-            </h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              Instead of complex random characters, consider using a passphrase: 4-6 random words strung together.
-            </p>
-            <div className="font-mono text-accent bg-muted/50 px-4 py-2 rounded-md inline-block">
-              correct-horse-battery-staple
-            </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              This 28-character passphrase would take centuries to crack but is easy to remember.
-            </p>
           </div>
         </div>
       </TabsContent>

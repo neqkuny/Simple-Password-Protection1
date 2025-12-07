@@ -15,7 +15,7 @@ const Index = () => {
         <div className="container py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-accent" />
-            <span className="font-semibold text-foreground">PassGuard</span>
+            <span className="font-semibold text-foreground">Simple Password Protection</span>
           </div>
           <a 
             href="https://github.com" 
@@ -63,7 +63,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-accent" />
-              <span>PassGuard</span>
+              <span>Simple Password Protection</span>
             </div>
             <p className="flex items-center gap-1">
               Made with <Heart className="w-4 h-4 text-destructive" /> for a safer internet
