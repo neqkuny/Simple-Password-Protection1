@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { PasswordInput } from "@/components/PasswordInput";
 import { PasswordStrengthMeter } from "@/components/PasswordStrengthMeter";
 import { EducationalTabs } from "@/components/EducationalTabs";
-import { Shield, Github, Heart } from "lucide-react";
+import { Shield, Github } from "lucide-react";
 
 const Index = () => {
   const [password, setPassword] = useState("");
@@ -65,10 +65,6 @@ const Index = () => {
               <Shield className="w-4 h-4 text-accent" />
               <span>Simple Password Protection</span>
             </div>
-            <p className="flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-destructive" /> for a safer internet
-            </p>
-            <p>Your passwords never leave your browser</p>
           </div>
         </div>
       </footer>

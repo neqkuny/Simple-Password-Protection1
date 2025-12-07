@@ -10,9 +10,8 @@ export function HeroSection() {
       <div className="container relative">
         <div className="max-w-3xl mx-auto text-center">
           {/* Icon Badge */}
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 mb-6 rounded-full bg-accent/10 border border-accent/20 animate-fade-in">
+          <div className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full bg-accent/10 border border-accent/20 animate-fade-in" aria-hidden>
             <Shield className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Password Security Hub</span>
           </div>
 
           {/* Main Heading */}

@@ -47,7 +47,6 @@ const securityTips = [
   { icon: Unlock, tip: "Enable two-factor authentication (2FA) wherever possible" },
   { icon: Clock, tip: "Change passwords immediately if a service you use is breached" },
   { icon: AlertTriangle, tip: "Never share passwords via email or messaging apps" },
-  { icon: Server, tip: "Check haveibeenpwned.com to see if your email was in a data breach" },
   { icon: Lightbulb, tip: "Consider using passphrases - they are long but easy to remember" },
 ];
 
