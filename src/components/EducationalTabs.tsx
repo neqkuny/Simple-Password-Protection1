@@ -51,10 +51,54 @@ const securityTips = [
   { icon: Lightbulb, tip: "Consider using passphrases - they are long but easy to remember" },
 ];
 
+// Security tips section as a standalone component
+export function SecurityTipsSection() {
+  return (
+    <div className="space-y-6 mt-12">
+      <div>
+        <h3 className="text-xl font-semibold text-foreground mb-2">Security Best Practices</h3>
+        <p className="text-muted-foreground">
+          Follow these expert recommendations to maximize your account security.
+        </p>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        {securityTips.map((item, i) => (
+          <div 
+            key={i}
+            className="p-4 rounded-lg bg-card border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 flex items-start gap-3"
+          >
+            <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+              <item.icon className="w-4 h-4 text-primary" />
+            </div>
+            <p className="text-sm text-foreground">{item.tip}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="p-5 rounded-lg bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/20">
+        <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+          <Lightbulb className="w-5 h-5 text-accent" />
+          The Passphrase Advantage
+        </h4>
+        <p className="text-sm text-muted-foreground mb-3">
+          Instead of complex random characters, consider using a passphrase: 4-6 random words strung together.
+        </p>
+        <div className="font-mono text-accent bg-muted/50 px-4 py-2 rounded-md inline-block">
+          correct-horse-battery-staple
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          This 28-character passphrase would take centuries to crack but is easy to remember.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function EducationalTabs() {
   return (
     <Tabs defaultValue="why" className="w-full">
-      <TabsList className="grid w-full grid-cols-3 bg-secondary p-1 rounded-lg">
+      <TabsList className="grid w-full grid-cols-2 bg-secondary p-1 rounded-lg">
         <TabsTrigger 
           value="why" 
           className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground rounded-md transition-all"
@@ -66,12 +110,6 @@ export function EducationalTabs() {
           className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground rounded-md transition-all"
         >
           Hacking Methods
-        </TabsTrigger>
-        <TabsTrigger 
-          value="tips"
-          className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground rounded-md transition-all"
-        >
-          Pro Tips
         </TabsTrigger>
       </TabsList>
 
@@ -161,50 +199,6 @@ export function EducationalTabs() {
         </div>
       </TabsContent>
 
-      <TabsContent value="tips" className="mt-6 animate-fade-in">
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">Security Best Practices</h3>
-            <p className="text-muted-foreground">
-              Follow these expert recommendations to maximize your account security.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            {securityTips.map((item, i) => (
-              <div 
-                key={i}
-                className={cn(
-                  "p-4 rounded-lg bg-card border border-border",
-                  "hover:border-primary/30 hover:bg-primary/5 transition-all duration-300",
-                  "flex items-start gap-3"
-                )}
-              >
-                <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                  <item.icon className="w-4 h-4 text-primary" />
-                </div>
-                <p className="text-sm text-foreground">{item.tip}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="p-5 rounded-lg bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/20">
-            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-accent" />
-              The Passphrase Advantage
-            </h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              Instead of complex random characters, consider using a passphrase: 4-6 random words strung together.
-            </p>
-            <div className="font-mono text-accent bg-muted/50 px-4 py-2 rounded-md inline-block">
-              correct-horse-battery-staple
-            </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              This 28-character passphrase would take centuries to crack but is easy to remember.
-            </p>
-          </div>
-        </div>
-      </TabsContent>
     </Tabs>
   );
 }
